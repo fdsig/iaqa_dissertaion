@@ -1,0 +1,295 @@
+
+%\documentclass[12pt,oneside,reqno]{amsart}
+%\documentclass[12pt,oneside]{amsart}
+%\usepackage{amssymb}
+\documentclass[parskip=full,12pt,a4paper]{report}
+\usepackage{fontspec}
+%\setmainfont[Mapping=text-tex]{OpenSans}
+\setsansfont{OpenSans}[
+    Path=./strfont/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+
+%\setmainfont{OpenSans}[ 
+%Extension = .ttf,
+%UprightFont = *-Regular]
+\setmainfont[Ligatures=TeX,
+    Path=./strfont/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]{OpenSans}
+
+\setsansfont{OpenSans}[
+    Path=./strfont/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+\setromanfont{OpenSans}[
+    Path=./strfont/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+    
+\setmonofont{OpenSans}[
+    Path=./strfont/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+    
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={MSc Dissertation},
+    pdfpagemode=FullScreen,
+    }
+
+
+
+%\setmainfont[Ligatures=TeX]{Calibri.ttf}
+
+%\setmainfont[Ligatures=TeX]{str_uni_font/Calibri.tff}
+%\setmainfont{[CrimsonText-str_uni_font/calibri.tff]}
+\usepackage[export]{adjustbox}
+
+\usepackage[left=2.8cm, right=2.8cm]{geometry}
+% with 12 point font, single line spacing, single-sided pages
+\setlength{\textheight}{23cm}
+\setlength{\footskip}{1.5cm}
+\usepackage[singlespacing]{setspace} % don't use onehalfspacing
+\usepackage{titlesec}
+\usepackage{parskip}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+\usepackage{IEEEtrantools}
+\usepackage{ctable}
+\usepackage{array}
+\usepackage{comment}
+\usepackage[dvipsnames]{xcolor}
+\newcolumntype{?}{!{\vrule width .618pt}}
+%\usepackage[margin=2.5cm]{geometry}
+
+\usepackage{mathptmx}
+
+
+\usepackage{listings} % for source code
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\sffamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\usepackage[style=ieee,
+defernumbers=false, 
+backend=biber, 
+maxnames=1 ,
+sortcites=true,
+maxcitenames=1,
+maxbibnames=6,
+giveninits=true, 
+uniquename=false,
+uniquelist=false, 
+url=true,
+doi=true,
+issn=false,
+isbn=false]{biblatex}
+%\usepackage[style=ieee,uniquelist=false,giveninits=true,,maxbibnames=9,maxcitenames=2,backend=biber]{biblatex}
+
+\addbibresource{References.bib}
+\addbibresource{sentinel.bib}
+
+%% pretty captions
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+%set fontsize for figure captions
+\captionsetup[figure]{font=tiny}
+\usepackage[font=normalsize,labelfont={bf}]{caption}
+%%% takes copy of jpg/png while drafting
+\setlength{\fboxsep}{0.005pt}
+ \newcommand{\tmpframe}[1]{\fbox{#1}}
+ \captionsetup[figure]{skip=6pt}
+%%% allows you to create Rules, Definitions, Lemmas, Theorems etc.
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[]{algorithm2e}
+% --------------------- here!!! ------------------------
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{Rule}{Rule}
+\numberwithin{definition}{chapter}
+\numberwithin{theorem}{chapter}  
+\numberwithin{lemma}{chapter}  
+\numberwithin{Rule}{chapter}  
+\numberwithin{equation}{chapter} 
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\usepackage[super]{nth} 
+ 
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{placeins}
+\usepackage{pdfpages}
+\usepackage{attachfile2}
+\usepackage{float}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+\usepackage{ragged2e}
+\usepackage{blindtext}
+\usepackage{fancyhdr}
+\usepackage{epigraph}
+%\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead{}
+\fancyhead[L]{ATTENTION to IAQA} %%% CHANGE AS APPROPRIATE (you may need to use a shortened form of the title)
+\fancyhead[R]{Student ID: 2935530} 
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+
+\usepackage{titlesec}
+
+%% prevents Chapter 1 (then new line and Introduction) - turns into 1. Introduction
+
+
+% Call your references "References" rather than Bibliography, then also allow for a separate Bibliography if needed.
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \perdatasource{References.bib}
+      \step[fieldset=keywords, fieldvalue={, primary}, append]
+    }
+    \map{
+      \perdatasource{bibleo.bib}
+      \step[fieldset=keywords, fieldvalue={, secondary}, append]
+    }
+  }
+}
+\input{Formatting}
+\setcounter{tocdepth}{3} % allow only sections (not subsections in table of contents)
+
+
+\setlength{\textheight}{23cm}
+%\setlength{\footskip}{1.5cm}
+
+\titlespacing*{\chapter}{0pt}{-50pt}{20pt}
+\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter}{1em}{} 
+\newcommand{\cmd}[1]{\texttt{\textbackslash{}#1}}
+\newcommand{\unnumberedchapter}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}  
+\let\tempit\itemize \let\tempeit\enditemize \renewenvironment{itemize}{\vspace{-1em}\tempit\addtolength{\itemsep}{-0.5\baselineskip}}{\tempeit} % Changes itemize spacing
+\let\tempen\enumerate \let\tempeen\endenumerate \renewenvironment{enumerate}{\vspace{-1em}\tempen\addtolength{\itemsep}{-0.5\baselineskip}}{\tempeen} % Changes enumerate spacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% with 12 point font, single line spacing, single-sided pages
+
+\setlength{\textheight}{23cm}
+%\setlength{\footskip}{1.5cm}
+
+
+
+\begin{document}
+
+\setmainfont[Ligatures=TeX,
+    Path=./strfont/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]{OpenSans}
+
+
+
+
+
+\pagenumbering{roman}
+\input{Title_page}
+\input{Declaration}
+\newpage
+\input{Acknowledgements}
+
+\input{Abstract} %% any other "Front matter" should go here before the table of contents - format in a style similar to the file Abstract.tex
+%%\usepackage{amsmath}
+ % not here ... look up!!
+\tableofcontents 
+\listoftables
+\lstlistoflistings
+\newpage
+\listoffigures
+
+\addtocontents{toc}{~\hfill\textbf{Page}\par} % comment this line out if you want to remove "Page"
+\pagenumbering{arabic}
+\setcounter{page}{0}
+\input{Introduction.tex}% standard chapter format
+\input{Literature_Review.tex}
+\input{Research_Methodology.tex}
+\input{Results_and_Discussion.tex}
+\input{Conclusion.tex}
+%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
+\setcounter{page}{0}
+
+\input{appendix}  % uncomment  these two lines of code if you have don't have an appendix!
+
+\typeout{}
+\newpage
+\setcounter{page}{0}
+\printbibliography[title=References]\addcontentsline{toc}{chapter}{References}
+
+
+\end{document}

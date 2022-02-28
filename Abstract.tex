@@ -1,0 +1,35 @@
+\chapter*{Abstract}
+This thesis examines Image Aesthetic Quality Assessment(IAQA) as a computer vision problem. We compare deep Convolutional Neural Networks (CNNs) with Vision Transformers (ViTs) and Convolutional Vision Transformers (ConViTs), and examine which models best predict 'image quality' as a binary classification problem. 
+
+While CNNS have superseded hand-crafted approaches to feature extraction, achieving this has required hand-crafting attention mechanisms as high level training policies on very complex CNN architectures - which are, themselves, time consuming and inefficient to train. We therefore produce a side-by-side comparison to assess whether self-attention can perform well as an IAQA classifier.  
+
+We perform training on the AVA Bench-marking dataset and show that in many cases both ViTs and ConVits outperform CNNs in side-by-side comparisons. Further, while ViTs and ConVits both require lengthy pre-training on very large datasets, they are excellent candidates for domain adaptation - often with pre-trained models performing well when architectural adjustments are made to output layers. 
+
+Surprisingly, this requires fewer training epochs than pre-trained CNN models to adapt to new domains. Further, while CNNs quickly overfit on the AVA Training subset, this is not the case with transformers. We also show that the conditions that suit each type of network differ, however, ConVits do not appear to require as many 'warm-up' epochs when being trained using transfer learning as they do in when being initially trained. 
+
+We show that while models will train on the AVA benchmarking dataset without pre-training, that using non pre-trained models does not achieve high training accuracy.  
+%
+
+Total Words:
+15046
+Headers:
+83
+Math Inline:
+126
+Math Display:
+17
+\vfill
+\begin{flushright}
+\begin{longtable}
+    \centering
+    \begin{tabular}{c|c}
+    Total Words & 15046 \\
+    Headers & 83 \\
+    Inline Equations & 126\\
+    Equations & 17\\
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{longtable}
+\end{flushright}
+    

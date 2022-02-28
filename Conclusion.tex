@@ -1,0 +1,141 @@
+\chapter{Conclusion and Future Work}
+\label{chap:Conclusion}
+This section outlines the contributions that we have made to IAQA as well a outlining the limitations and drawbacks in section \ref{sec:limitations}. Section \ref{sec:Future Perspectives} gives an outline of both potential for real world applications and areas of research that might provide new learning such as multi modal transformers(section \ref{sec:multi-modal transformers}) Social network (section \ref{sec:social networks}) and continuous learning (section \ref{sec:continuous learning}). Finally we address potential applications of IAQA research and trained models in section \ref{sec:recommended applications}.
+
+\section{Main Contributions}
+\label{main_contributions} 
+
+We have shown that transformers, even when very large and could not be trained normally on datasets as small as those available for IAQA, do perform well. Further, while initial training of ConViTs on ImageNet1k is often ongoing for almost a week, that using distributed training these models easily transfer to IAQA domain. Even after only a few epochs, they appear to show high training accuracy. This makes them suitable and efficient models (when pre-trained) and further shows that there is a high degree of similarity between what has been learned on ImagNet1k and the IAQA domain, which may seem counter intuitive. This is a useful finding in itself, and is further underscored by the high performance of ViT in early epochs. 
+
+Many of the images in the AVA benchmarking dataset are ambiguous, and transformers appear to handle these more effectively - with the ability to correctly predict ambiguously scored images where the semantic content is also ambiguous. 
+
+Newly introduced hyper parameters, such as GPSA, do not appear to show improved ability to adapt. While they converge on less data, they are still not suitable for use on a dataset as small as AVA.
+
+We showed that training does not necessarily require warm up epochs for a binary classifier for ConViTs, however this does not seem to be the case for ViT where the initial epoch shows the highest validation accuracy (both overall when compared to other models and to subsequent epochs). There are two potential ways to interpret this: first, that the soft inductive bias cushions the adaptation of pre-trained models with its soft inductive bias, and second, that the warm up epochs simply were not sufficient (set to 3 for all models). This second possibility would be verifiable by conducting more experiments and adjusting the warm up epochs of the scheduler. 
+
+The former might be verifiable by introducing convolution layers and gradually mixing heads that have convolutions with heads that do not have convolutions. 
+
+
+
+
+\section{Limitations and Critical Evaluation}
+
+\label{sec:limitations}
+There are several drawbacks to the approach that was taken here. These fall into the following categories: \begin{itemize}
+    \item Training Approach;
+    \item Models;
+    \itme Experimental design;
+    \item Evaluation.
+\end{itemize}.
+
+We trained initial ConViTs\cite{DAscoli2021} using available code at a high level. This made it possible to introduce hyper parameter `locality strength' as this was a high level pragmatic feature, however we did not initially train under identical conditions, with controls such as random state, using the same scheduler and optimiser. This made the initial comparison difficult, and required retraining all models under identical conditions. 
+
+We did not make additions to models apart form adding a linear layer with outputs corresponding to a binary class, and as such are not able to assess whether adjusting the model architecture would have improved the model performance. This, however, is curtailed by the limitations of using pre-trained models where training transformers from scratch is not possible on the datasets provided or with the compute resources available to us.
+
+While some aspects of the architecture, such as the depth and size of the model, are compered, we did not conduct an ablation study which could have provided insights into which part of network are most critical for inference and to explainability of results. This was in part as the size of models required lengthy training, which would have been prohibitive within the timescales for this project. 
+
+\section{Future Perspectives}
+
+\label{sec:Future Perspectives}
+
+There is clearly a great deal of potential for more research both in the application domain of IAQA, and within image classification more widely. Where the focus of the general classification tasks on ImageNet1k is geared towards improving model performance and domain applications are focused on sub, or application domains, we make recommendations both in terms of research within the field of IAQA and applications of IAQA to industry. 
+
+\subsection{Further Research}
+\label{sec:further research}
+
+While we have trained a significant number of different networks to provide a side-by-side comparison, and have made adaptations to a binary classification problem, it would be interesting to see how network architectures might be adapted or how ensemble training might leverage the best of both the ViT and CNN worlds globally as well as locally. Consideration is made here to: 
+
+\begin{itemize}
+    \item Model Architecture and spatial adjustment including Siamese approaches and unsupervised;
+    \itme Training as 10 class probability distribution and or regression;
+    \item Exploring other areas of data including data dictionary, metadata and textural information. 
+    \end{itemize}
+
+
+Vision transformers offer a new perspective, both in qualitative results and in their potential to reach higher accuracy - however, CNN approaches that have inbuilt attention mechanisms still outperform out of the box ViTs and ConViTs. 
+
+Another option would be training as a 10 bin (probability distribution) to produce a more detailed metric, which might have provided a finer grained analysis as has been provided by \cite{Zhang2021d}. This would further enable side-by-side analysis of accuracy 10 bin probability distribution, where accuracy might be compared with both the majority class as well as mean score. This would allow the comparison of predicted probability distributions alongside actual probability distributions.
+
+Further experiments could also examine the possibility of adjusting convolutional features to adjust levels of inductive bias \ref{fig:Inductive Bias EG}. This might include adjusting the stride, but also looking at max or average pooling of convolution feature maps that are larger than ViT patch dimension. 
+
+Further, many of the images in the AVA benchmarinkg dataset are much larger than $ 224 \times 224$, therefore data is clearly lost in downsampling images. A large feature of the AVA dataset is the size of the images; a significant portion of the 64gb uncompressed dataset is effectively lost. This is further compounded by the fact that image resolution is itself a potential aesthetic attribute, and photographers may have purposefully chosen high resolution images or vice versa as a part of their competition submission. 
+
+This might require adjusting patch sizes to optimise for the task, as this may be the bottleneck in learning should larger images of $3 \times 256 \times 256 $ for example. 
+
+\subsubsection{Multi-Modal Transformers}
+\label{sec:multi-modal transformers}
+Given that is is well recognised that the semantic content of images has a bearing on aesthetic quality\cite{Simond2015,Mullennix2020}, it would be useful to examine multi-modal approaches to using both natural language and vision transformers, particularly given the successes of natural language transformers such as BERT\cite{Devlin2019, Wolf2020a}.
+Some key areas within this are:
+\begin{enumerate}
+\item \textbf{Key areas within this are}.
+        \begin{enumerate}
+        \item A mapping of Tokeniziton and feature mapping between NLP tokens;
+        \item Training NLP for both sentiment and semantic content form image pages to enhance training and develop context aware feature maps; 
+        \item Examining the nature of figurative language and the content of the image (it is well known that parts of speech and written natural language that remain challenging are to do with nuance interpretation, for example, the use of sarcasm or irony. Properties that are intuitive parts of human social interaction;
+        \item Examining what further content there is available on a dataset that is not include with AVA - each individual image page on DPChallenge.com has a great deal of momentary from DPChallenge.com members.
+        
+    \end{enumerate}
+
+\end{enumerate}
+
+The text descriptions of each image provided by the users of DPChallenge are rich examples of human annotation. 
+\begin{quote}
+The colors and the smallest structure of bugs is amazing. You have brought to ones eye all we don't see.\cite{Brendel2021}
+\end{quote}
+A part of this may also be mapping an online social network (DP.Challenge.com)\footnote{\href{https://www.dpchallenge.com/}{https://www.dpchallenge.com/}}, something that in itself might prove to be fascinating research. 
+
+
+This approach might also yield explainable insights into the transformers beyond attention\cite{Chefer2020}, with the training of NLPs providing contextual information that might be purposefully excluded or altered. 
+
+
+\subsubsection{Continuous Learning}
+\label{sec:continuous learning}
+
+Continuous learning is recognised as being of particular importance where context is vital \cite{Chen2016, Lomonaco2020}, and IAQA is one such area where context and new available data take precedence.
+
+For instance, DPChallenge has added 120k new images since AVA Bench marking dataset was scraped and compiled in 2012. We have web-scraped these along with the associated meta data. With more than one new challenge being created per calendar month, which, in addition, have frequently updated comments.
+
+One particularly exciting area within this is the potential for training and predicting image quality in real time, and comparing with completion ground truth as this develops. This would also have the potential to be leveraged for commercial purposes, where finding and ranking new image content may be part of obtaining a competitive advantage - especially where photo and advertising need new content that is of high quality that also reflects, for example, current fashion trends. Such a model might be able to provide insights into what is different between trending styles and well established image quality features. 
+
+IAQA is a rich field, with many publications - <300 associated with the AVA benchmarking dataset. Performing a meta analysis of the domain, including mapping citation relationships and datasets, would be a rich exercise and contribute new knowledge to the field. This would also support the production of a data dictionary for IAQA. 
+
+The code repository associated with this dissertation provides a formative example of how this might be structured\footnote{\href{https://github.com/fdsig/iaqa}{https://github.com/fdsig/iaqa}}. Many of the IAQA datasets reviewed in chapter \ref{chap:Literature_Review} shown in table \ref{Tab:IAQA Datasets} and in the appendix \ref{chap:Appendix}. These provide subclass granularity, as well as quality classes. 
+
+
+\subsubsection{Social Networks}
+\label{sec:social networks}
+
+The online community within dp.challenge.com is clearly well established, with trust and supportive feedback being provided by members. In addition to leveraging the comments data outlined above, it may also be a fruitful avenue of research to use deep learning for community learning and to map the online community \cite{Jin2017, Wu2020b}. This may also feed into other areas of research where online community is central, such as deep fake detection \cite{Ajao2019}. 
+
+The dp.challenge.com community might also have a vested interest in such areas, with a growing potential for deep fake images being presented in competitions. Further, this may also have the benefit of providing new meta data on the AVA benchmarking dataset, with the ability to leverage data on voting patterns within competitions - something that is presently absent and has been the source of criticism of the AVA benchmarking dataset. 
+
+\subsection{Recommendations and Applications}
+\label{sec:recommended applications} 
+
+While IAQA as a classification task in its own right is interesting, there are also several areas of commercially that could be further developed - such as a mobile application. This might involve research into how best to prune networks and make different trade-offs, such as whether false positives or false negatives are preferable. Further, model size would be an important consideration within on device real time IAQA inference - increasingly compact and efficient CNNs\cite{Feng2019} might be appropriate. Many of the models trained would be too large to use for inference on a mobile phone device.
+
+Areas that haven't been explored are:
+
+\begin{itemize}
+    \item Art applications have not been fully explored;
+    \item Predicting individuals as well as groups as a commercial application;
+    \item Embedding quality estimation within a mobile application.
+\end{itemize}
+
+Novel applications may come from \textit{deeper} rather than \textit{broader} research. For instance, using art databases to learn the aesthetics of particular periods of art history. This would involve formulating IAQA problems in different ways, such as conducting unsupervised learning to, for example, learn the aesthetic space of a particular artistic movement. 
+
+
+Aesthetic classifiers as filers on databases: this may be useful in areas such as medical imaging, to be able to either apply or select from high quality images alongside having applications in mobile device filter. 
+
+On-device image enhancement: in a world where much of our lives are recorded on mobile devices, this is clearly something that has a great deal of commercial potential, as is automated enhancement or selection of product photographs such as \cite{idealo2021}
+
+
+
+\
+
+        
+        
+        
+        
+        
+        
